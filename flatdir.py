@@ -9,7 +9,7 @@ POWERS_D = {'k': 10**3, 'm': 10**6, 'g': 10**9, 't': 10**12}
 POWERS_B = {'k': 2**10, 'm': 2**20, 'g': 2**30, 't': 2**40}
 
 
-def r_scandir(path):
+def r_scandir(path, follow_symlinks=False):
     '''List files and directories recursively.
 
     Parameters
@@ -24,8 +24,8 @@ def r_scandir(path):
     '''
     for entry in os.scandir(path):
         yield entry
-        if entry.is_dir():
-            yield from r_scandir(entry.path)
+        if entry.is_dir() and (not entry.is_symlink() or follow_symlinks):
+            yield from r_scandir(entry.path, follow_symlinks)
 
 
 def human2bytes(text, binary=True):
