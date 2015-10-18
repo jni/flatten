@@ -1,0 +1,4 @@
+import flatdir
+
+if __name__ == '__main__':
+    flatdir.main()
