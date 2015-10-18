@@ -115,7 +115,7 @@ def main():
         help='Find only files smaller than this size. This can be a human-'
              'readable string, such as \'512kB\'.')
 
-    parser.parse_args(sys.argv)
+    parser.parse_args(sys.argv[1:])
 
     flatten(parser.indir, parser.outdir, filetype=parser.filetype,
             minsize=parser.minsize, maxsize=parser.maxsize)
